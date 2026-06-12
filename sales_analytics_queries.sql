@@ -47,8 +47,9 @@ group by ProductID
 having avgQuantity<5;
 
 #10. Write a query to find the sum of total sales for each customer in each region.
-select CustomerID, Region, Quantity*UnitPrice as TotalSale 
-from Sales;
+SELECT CustomerID, Region, SUM(Quantity * UnitPrice) AS TotalSale
+FROM Sales
+GROUP BY CustomerID, Region;
 
 #11. Write a query to calculate the total sales for each month.
 select month(SaleDate) as SaleMonth, sum(Quantity*UnitPrice) as TotalSale 
@@ -73,11 +74,10 @@ group by CustomerID
 having Purchases>2;
 
 #15. Write a query to find the total sales for each product and filter only those products where the total sales exceed 1500.  
-select ProductID Sum(Quantity*UnitPrice) as TotalSale 
-from Sales 
-group by ProductID 
-having TotalSale>1500;
-
+SELECT ProductID, SUM(Quantity * UnitPrice) AS TotalSale
+FROM Sales
+GROUP BY ProductID
+HAVING TotalSale > 1500;
 
 
 
